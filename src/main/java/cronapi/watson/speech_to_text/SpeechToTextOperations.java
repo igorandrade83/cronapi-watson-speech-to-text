@@ -1,22 +1,33 @@
 package cronapi.watson.speech_to_text;
 
 import com.ibm.watson.developer_cloud.speech_to_text.v1.SpeechToText;
-import com.ibm.watson.developer_cloud.speech_to_text.v1.model.*;
+import com.ibm.watson.developer_cloud.speech_to_text.v1.model.Corpus;
+import com.ibm.watson.developer_cloud.speech_to_text.v1.model.Customization;
+import com.ibm.watson.developer_cloud.speech_to_text.v1.model.RecognitionCallback;
+import com.ibm.watson.developer_cloud.speech_to_text.v1.model.RecognitionJob;
+import com.ibm.watson.developer_cloud.speech_to_text.v1.model.RecognitionJobOptions;
+import com.ibm.watson.developer_cloud.speech_to_text.v1.model.RecognizeOptions;
+import com.ibm.watson.developer_cloud.speech_to_text.v1.model.SpeechModel;
+import com.ibm.watson.developer_cloud.speech_to_text.v1.model.SpeechResults;
+import com.ibm.watson.developer_cloud.speech_to_text.v1.model.SpeechSession;
+import com.ibm.watson.developer_cloud.speech_to_text.v1.model.SpeechSessionStatus;
+import com.ibm.watson.developer_cloud.speech_to_text.v1.model.Word;
+import com.ibm.watson.developer_cloud.speech_to_text.v1.model.WordData;
 import com.ibm.watson.developer_cloud.speech_to_text.v1.websocket.RecognizeCallback;
 import cronapi.CronapiMetaData;
-import okhttp3.WebSocket;
-
 import java.io.File;
 import java.io.InputStream;
 import java.util.List;
 import java.util.Map;
+import okhttp3.WebSocket;
 
 @CronapiMetaData
 public final class SpeechToTextOperations {
 
   @CronapiMetaData
-  public static void addCorpus(String username, String password, String endPoint, Map<String, String> headers,
-                               String customizationId, String corpusName, File corpusFile, Boolean allowOverwrite) {
+  public static void addCorpus(String username, String password, String endPoint,
+      Map<String, String> headers,
+      String customizationId, String corpusName, File corpusFile, Boolean allowOverwrite) {
     SpeechToText service = new SpeechToText();
     service.setUsernameAndPassword(username, password);
     service.setEndPoint(endPoint);
@@ -26,8 +37,9 @@ public final class SpeechToTextOperations {
   }
 
   @CronapiMetaData
-  public static void addWord(String username, String password, String endPoint, Map<String, String> headers,
-                             String customizationId, Word word) {
+  public static void addWord(String username, String password, String endPoint,
+      Map<String, String> headers,
+      String customizationId, Word word) {
     SpeechToText service = new SpeechToText();
     service.setUsernameAndPassword(username, password);
     service.setEndPoint(endPoint);
@@ -37,8 +49,9 @@ public final class SpeechToTextOperations {
   }
 
   @CronapiMetaData
-  public static void addWords(String username, String password, String endPoint, Map<String, String> headers,
-                              String customizationId, Word... words) {
+  public static void addWords(String username, String password, String endPoint,
+      Map<String, String> headers,
+      String customizationId, Word... words) {
 
     SpeechToText service = new SpeechToText();
     service.setUsernameAndPassword(username, password);
@@ -49,8 +62,9 @@ public final class SpeechToTextOperations {
   }
 
   @CronapiMetaData
-  public static Customization createCustomization(String username, String password, String endPoint, Map<String, String> headers,
-                                                  String name, SpeechModel baseModel, String description, String dialect) {
+  public static Customization createCustomization(String username, String password, String endPoint,
+      Map<String, String> headers,
+      String name, SpeechModel baseModel, String description, String dialect) {
     SpeechToText service = new SpeechToText();
     service.setUsernameAndPassword(username, password);
     service.setEndPoint(endPoint);
@@ -60,8 +74,9 @@ public final class SpeechToTextOperations {
   }
 
   @CronapiMetaData
-  public static Customization createCustomization(String username, String password, String endPoint, Map<String, String> headers,
-                                                  String name, SpeechModel baseModel, String description) {
+  public static Customization createCustomization(String username, String password, String endPoint,
+      Map<String, String> headers,
+      String name, SpeechModel baseModel, String description) {
     SpeechToText service = new SpeechToText();
     service.setUsernameAndPassword(username, password);
     service.setEndPoint(endPoint);
@@ -71,8 +86,9 @@ public final class SpeechToTextOperations {
   }
 
   @CronapiMetaData
-  public static RecognitionJob createRecognitionJob(String username, String password, String endPoint, Map<String, String> headers,
-                                                    File audio, RecognizeOptions recognizeOptions, RecognitionJobOptions recognitionJobOptions) {
+  public static RecognitionJob createRecognitionJob(String username, String password,
+      String endPoint, Map<String, String> headers,
+      File audio, RecognizeOptions recognizeOptions, RecognitionJobOptions recognitionJobOptions) {
     SpeechToText service = new SpeechToText();
     service.setUsernameAndPassword(username, password);
     service.setEndPoint(endPoint);
@@ -82,7 +98,8 @@ public final class SpeechToTextOperations {
   }
 
   @CronapiMetaData
-  public static SpeechSession createSession(String username, String password, String endPoint, Map<String, String> headers) {
+  public static SpeechSession createSession(String username, String password, String endPoint,
+      Map<String, String> headers) {
     SpeechToText service = new SpeechToText();
     service.setUsernameAndPassword(username, password);
     service.setEndPoint(endPoint);
@@ -92,8 +109,9 @@ public final class SpeechToTextOperations {
   }
 
   @CronapiMetaData
-  public static SpeechSession createSession(String username, String password, String endPoint, Map<String, String> headers,
-                                            SpeechModel model) {
+  public static SpeechSession createSession(String username, String password, String endPoint,
+      Map<String, String> headers,
+      SpeechModel model) {
     SpeechToText service = new SpeechToText();
     service.setUsernameAndPassword(username, password);
     service.setEndPoint(endPoint);
@@ -103,8 +121,9 @@ public final class SpeechToTextOperations {
   }
 
   @CronapiMetaData
-  public static void deleteCorpus(String username, String password, String endPoint, Map<String, String> headers,
-                                  String customizationId, String corpusName) {
+  public static void deleteCorpus(String username, String password, String endPoint,
+      Map<String, String> headers,
+      String customizationId, String corpusName) {
     SpeechToText service = new SpeechToText();
     service.setUsernameAndPassword(username, password);
     service.setEndPoint(endPoint);
@@ -114,8 +133,9 @@ public final class SpeechToTextOperations {
   }
 
   @CronapiMetaData
-  public static void deleteCustomization(String username, String password, String endPoint, Map<String, String> headers,
-                                         String customizationId) {
+  public static void deleteCustomization(String username, String password, String endPoint,
+      Map<String, String> headers,
+      String customizationId) {
     SpeechToText service = new SpeechToText();
     service.setUsernameAndPassword(username, password);
     service.setEndPoint(endPoint);
@@ -125,8 +145,9 @@ public final class SpeechToTextOperations {
   }
 
   @CronapiMetaData
-  public static void deleteRecognitionJob(String username, String password, String endPoint, Map<String, String> headers,
-                                          String id) {
+  public static void deleteRecognitionJob(String username, String password, String endPoint,
+      Map<String, String> headers,
+      String id) {
     SpeechToText service = new SpeechToText();
     service.setUsernameAndPassword(username, password);
     service.setEndPoint(endPoint);
@@ -136,8 +157,9 @@ public final class SpeechToTextOperations {
   }
 
   @CronapiMetaData
-  public static void deleteSession(String username, String password, String endPoint, Map<String, String> headers,
-                                   SpeechSession session) {
+  public static void deleteSession(String username, String password, String endPoint,
+      Map<String, String> headers,
+      SpeechSession session) {
     SpeechToText service = new SpeechToText();
     service.setUsernameAndPassword(username, password);
     service.setEndPoint(endPoint);
@@ -147,8 +169,9 @@ public final class SpeechToTextOperations {
   }
 
   @CronapiMetaData
-  public static void deleteWord(String username, String password, String endPoint, Map<String, String> headers,
-                                String customizationId, String wordName) {
+  public static void deleteWord(String username, String password, String endPoint,
+      Map<String, String> headers,
+      String customizationId, String wordName) {
     SpeechToText service = new SpeechToText();
     service.setUsernameAndPassword(username, password);
     service.setEndPoint(endPoint);
@@ -158,8 +181,9 @@ public final class SpeechToTextOperations {
   }
 
   @CronapiMetaData
-  public static List<Corpus> getCorpora(String username, String password, String endPoint, Map<String, String> headers,
-                                        String customizationId) {
+  public static List<Corpus> getCorpora(String username, String password, String endPoint,
+      Map<String, String> headers,
+      String customizationId) {
 
     SpeechToText service = new SpeechToText();
     service.setUsernameAndPassword(username, password);
@@ -170,8 +194,9 @@ public final class SpeechToTextOperations {
   }
 
   @CronapiMetaData
-  public static Corpus getCorpus(String username, String password, String endPoint, Map<String, String> headers,
-                                 String customizationId, String corpusName) {
+  public static Corpus getCorpus(String username, String password, String endPoint,
+      Map<String, String> headers,
+      String customizationId, String corpusName) {
     SpeechToText service = new SpeechToText();
     service.setUsernameAndPassword(username, password);
     service.setEndPoint(endPoint);
@@ -181,8 +206,9 @@ public final class SpeechToTextOperations {
   }
 
   @CronapiMetaData
-  public static Customization getCustomization(String username, String password, String endPoint, Map<String, String> headers,
-                                               String customizationId) {
+  public static Customization getCustomization(String username, String password, String endPoint,
+      Map<String, String> headers,
+      String customizationId) {
     SpeechToText service = new SpeechToText();
     service.setUsernameAndPassword(username, password);
     service.setEndPoint(endPoint);
@@ -192,8 +218,9 @@ public final class SpeechToTextOperations {
   }
 
   @CronapiMetaData
-  public static List<Customization> getCustomizations(String username, String password, String endPoint, Map<String, String> headers,
-                                                      String language) {
+  public static List<Customization> getCustomizations(String username, String password,
+      String endPoint, Map<String, String> headers,
+      String language) {
     SpeechToText service = new SpeechToText();
     service.setUsernameAndPassword(username, password);
     service.setEndPoint(endPoint);
@@ -203,8 +230,9 @@ public final class SpeechToTextOperations {
   }
 
   @CronapiMetaData
-  public static SpeechModel getModel(String username, String password, String endPoint, Map<String, String> headers,
-                                     String modelName) {
+  public static SpeechModel getModel(String username, String password, String endPoint,
+      Map<String, String> headers,
+      String modelName) {
     SpeechToText service = new SpeechToText();
     service.setUsernameAndPassword(username, password);
     service.setEndPoint(endPoint);
@@ -214,7 +242,8 @@ public final class SpeechToTextOperations {
   }
 
   @CronapiMetaData
-  public static List<SpeechModel> getModels(String username, String password, String endPoint, Map<String, String> headers) {
+  public static List<SpeechModel> getModels(String username, String password, String endPoint,
+      Map<String, String> headers) {
     SpeechToText service = new SpeechToText();
     service.setUsernameAndPassword(username, password);
     service.setEndPoint(endPoint);
@@ -224,8 +253,9 @@ public final class SpeechToTextOperations {
   }
 
   @CronapiMetaData
-  public static RecognitionJob getRecognitionJob(String username, String password, String endPoint, Map<String, String> headers,
-                                                 String id) {
+  public static RecognitionJob getRecognitionJob(String username, String password, String endPoint,
+      Map<String, String> headers,
+      String id) {
     SpeechToText service = new SpeechToText();
     service.setUsernameAndPassword(username, password);
     service.setEndPoint(endPoint);
@@ -235,7 +265,8 @@ public final class SpeechToTextOperations {
   }
 
   @CronapiMetaData
-  public static List<RecognitionJob> getRecognitionJobs(String username, String password, String endPoint, Map<String, String> headers) {
+  public static List<RecognitionJob> getRecognitionJobs(String username, String password,
+      String endPoint, Map<String, String> headers) {
     SpeechToText service = new SpeechToText();
     service.setUsernameAndPassword(username, password);
     service.setEndPoint(endPoint);
@@ -245,8 +276,9 @@ public final class SpeechToTextOperations {
   }
 
   @CronapiMetaData
-  public static SpeechSessionStatus getRecognizeStatus(String username, String password, String endPoint, Map<String, String> headers,
-                                                       SpeechSession session) {
+  public static SpeechSessionStatus getRecognizeStatus(String username, String password,
+      String endPoint, Map<String, String> headers,
+      SpeechSession session) {
     SpeechToText service = new SpeechToText();
     service.setUsernameAndPassword(username, password);
     service.setEndPoint(endPoint);
@@ -256,8 +288,9 @@ public final class SpeechToTextOperations {
   }
 
   @CronapiMetaData
-  public static WordData getWord(String username, String password, String endPoint, Map<String, String> headers,
-                                 String customizationId, String wordName) {
+  public static WordData getWord(String username, String password, String endPoint,
+      Map<String, String> headers,
+      String customizationId, String wordName) {
     SpeechToText service = new SpeechToText();
     service.setUsernameAndPassword(username, password);
     service.setEndPoint(endPoint);
@@ -267,8 +300,9 @@ public final class SpeechToTextOperations {
   }
 
   @CronapiMetaData
-  public static List<WordData> getWords(String username, String password, String endPoint, Map<String, String> headers,
-                                        String customizationId, Word.Type type) {
+  public static List<WordData> getWords(String username, String password, String endPoint,
+      Map<String, String> headers,
+      String customizationId, Word.Type type) {
     SpeechToText service = new SpeechToText();
     service.setUsernameAndPassword(username, password);
     service.setEndPoint(endPoint);
@@ -278,8 +312,9 @@ public final class SpeechToTextOperations {
   }
 
   @CronapiMetaData
-  public static List<WordData> getWords(String username, String password, String endPoint, Map<String, String> headers,
-                                        String customizationId, Word.Type type, Word.Sort sort) {
+  public static List<WordData> getWords(String username, String password, String endPoint,
+      Map<String, String> headers,
+      String customizationId, Word.Type type, Word.Sort sort) {
     SpeechToText service = new SpeechToText();
     service.setUsernameAndPassword(username, password);
     service.setEndPoint(endPoint);
@@ -289,8 +324,9 @@ public final class SpeechToTextOperations {
   }
 
   @CronapiMetaData
-  public static SpeechResults recognize(String username, String password, String endPoint, Map<String, String> headers,
-                                        File audio) {
+  public static SpeechResults recognize(String username, String password, String endPoint,
+      Map<String, String> headers,
+      File audio) {
     SpeechToText service = new SpeechToText();
     service.setUsernameAndPassword(username, password);
     service.setEndPoint(endPoint);
@@ -300,8 +336,9 @@ public final class SpeechToTextOperations {
   }
 
   @CronapiMetaData
-  public static SpeechResults recognize(String username, String password, String endPoint, Map<String, String> headers,
-                                        File audio, RecognizeOptions options) {
+  public static SpeechResults recognize(String username, String password, String endPoint,
+      Map<String, String> headers,
+      File audio, RecognizeOptions options) {
     SpeechToText service = new SpeechToText();
     service.setUsernameAndPassword(username, password);
     service.setEndPoint(endPoint);
@@ -311,8 +348,9 @@ public final class SpeechToTextOperations {
   }
 
   @CronapiMetaData
-  public static WebSocket recognizeUsingWebSocket(String username, String password, String endPoint, Map<String, String> headers,
-                                                  InputStream audio, RecognizeOptions options, RecognizeCallback callback) {
+  public static WebSocket recognizeUsingWebSocket(String username, String password, String endPoint,
+      Map<String, String> headers,
+      InputStream audio, RecognizeOptions options, RecognizeCallback callback) {
     SpeechToText service = new SpeechToText();
     service.setUsernameAndPassword(username, password);
     service.setEndPoint(endPoint);
@@ -322,8 +360,9 @@ public final class SpeechToTextOperations {
   }
 
   @CronapiMetaData
-  public static RecognitionCallback registerCallback(String username, String password, String endPoint, Map<String, String> headers,
-                                                     String callbackUrl, String secret) {
+  public static RecognitionCallback registerCallback(String username, String password,
+      String endPoint, Map<String, String> headers,
+      String callbackUrl, String secret) {
     SpeechToText service = new SpeechToText();
     service.setUsernameAndPassword(username, password);
     service.setEndPoint(endPoint);
@@ -333,8 +372,9 @@ public final class SpeechToTextOperations {
   }
 
   @CronapiMetaData
-  public static void resetCustomization(String username, String password, String endPoint, Map<String, String> headers,
-                                        String customizationId) {
+  public static void resetCustomization(String username, String password, String endPoint,
+      Map<String, String> headers,
+      String customizationId) {
     SpeechToText service = new SpeechToText();
     service.setUsernameAndPassword(username, password);
     service.setEndPoint(endPoint);
@@ -344,8 +384,9 @@ public final class SpeechToTextOperations {
   }
 
   @CronapiMetaData
-  public static void trainCustomization(String username, String password, String endPoint, Map<String, String> headers,
-                                        String customizationId, Customization.WordTypeToAdd wordTypeToAdd) {
+  public static void trainCustomization(String username, String password, String endPoint,
+      Map<String, String> headers,
+      String customizationId, Customization.WordTypeToAdd wordTypeToAdd) {
     SpeechToText service = new SpeechToText();
     service.setUsernameAndPassword(username, password);
     service.setEndPoint(endPoint);
